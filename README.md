@@ -37,6 +37,7 @@ project folder structure
 │           ├── src/
 │           ├── composer.json
 │           ├── Dockerfile
+│           ├── php.ini
 │           ├── .env
 ├── infra/
 │   ├── k8s/
