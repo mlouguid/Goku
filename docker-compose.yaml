@@ -1,28 +1,28 @@
 version: "3.8"
 
 services:
-  dockerize-xapp-mysql-service:
+  containerize-app-mysql:
     build:
       context: ./services/database/mysql
       dockerfile: Dockerfile
-    image: dockerize_xapp_mysql_image:v1
-    container_name: dockerize_xapp_mysql_container
+    image: dockerize_xapp_mysql:v1
+    container_name: containerize-app-mysql
     env_file:
       - ./services/database/mysql/.env
     ports:
       - "3306:3306"
     volumes:
-      - dockerize-xapp-mysql-service-volume:/var/lib/mysql
+      - containerize-app-mysql:/var/lib/mysql
     networks:
       app_network:
-        ipv4_address: 10.10.0.100 # IP for MySQL
+        ipv4_address: 10.10.0.2 # IP MySQL
 
-  dockerize-xapp-php-service:
+  containerize-app-php:
     build:
       context: ./services/web/php
       dockerfile: Dockerfile
-    image: dockerize_xapp_php_image:v1
-    container_name: dockerize_xapp_php_container
+    image: containerize-app-php:v1
+    container_name: containerize-app-php
     working_dir: /var/www/html
     env_file:
       - ./services/web/php/.env
@@ -33,17 +33,17 @@ services:
       - ./services/web/php:/var/www/html
       - ./services/web/php/vendor:/var/www/html/vendor
     depends_on:
-      - dockerize-xapp-mysql-service
+      - containerize-app-mysql
     networks:
       app_network:
-        ipv4_address: 10.10.0.101 # IP for PHP
+        ipv4_address: 10.10.0.3 # IP PHP
 
-  dockerize-xapp-nginx-service:
+  containerize-app-nginx:
     build:
       context: ./services/web/nginx
       dockerfile: Dockerfile
-    image: dockerize_xapp_nginx_image:v1
-    container_name: dockerize_xapp_nginx_container
+    image: containerize-app-nginx:v1
+    container_name: containerize-app-nginx
     working_dir: /var/www/html
     env_file:
       - ./services/web/nginx/.env
@@ -51,33 +51,33 @@ services:
     ports:
       - "80:80"
     depends_on:
-      - dockerize-xapp-php-service
+      - containerize-app-php
     networks:
       app_network:
-        ipv4_address: 10.10.0.102 # IP for Nginx
+        ipv4_address: 10.10.0.4 # IP Nginx
 
-  dockerize-xapp-redis-service:
+  containerize-app-redis:
     build:
       context: ./services/database/redis
       dockerfile: Dockerfile
-    image: dockerize_xapp_redis_image:v1
-    container_name: dockerize_xapp_redis_container
+    image: containerize-app-redis:v1
+    container_name: containerize-app-redis
     env_file:
       - ./services/database/redis/.env
     ports:
-      - "6380:6379"  # Host port 6380 mapped to Redis container's default port 6379
+      - "6379:6379"
     networks:
       app_network:
-        ipv4_address: 10.10.0.103 # IP for redis
+        ipv4_address: 10.10.0.5 # IP Redis
 
 volumes:
-  dockerize-xapp-mysql-service-volume:
+  containerize-app-mysql:
 
 networks:
   app_network:
     driver: bridge
     ipam:
       config:
-        - subnet: "10.10.0.0/24" # subnet for the network
-          gateway: "10.10.0.1" # gateway for the subnet
+        - subnet: "10.10.0.0/24" # Subnet for the network
+          gateway: "10.10.0.1" # Gateway for the subnet
     external: false
