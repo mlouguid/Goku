@@ -44,7 +44,6 @@ services:
       dockerfile: Dockerfile
     image: containerize-app-nginx:v1
     container_name: containerize-app-nginx
-    working_dir: /var/www/html
     env_file:
       - ./services/web/nginx/.env
     restart: always
@@ -75,6 +74,7 @@ volumes:
 
 networks:
   app_network:
+    name: app_network
     driver: bridge
     ipam:
       config:
