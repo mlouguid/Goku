@@ -41,3 +41,9 @@ project folder structure
 │       ├── deployments/
 │       └── services/
 ```
+
+## docker cli
+
+```sh
+docker-compose up -d
+```
