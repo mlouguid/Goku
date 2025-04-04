@@ -1,6 +1,6 @@
 <div align="center">
 
-# dockerize-php-xapp
+# containerize-php-app
 
 [![CI-CD](https://github.com/soulaimaneyahya/dockerize-php-xapp/actions/workflows/ci-cd.yaml/badge.svg)](https://github.com/soulaimaneyahya/dockerize-php-xapp/actions/workflows/ci-cd.yaml)
 
