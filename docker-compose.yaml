@@ -5,7 +5,7 @@ services:
     build:
       context: ./services/database/mysql
       dockerfile: Dockerfile
-    image: dockerize_xapp_mysql:v1
+    image: containerize-app-mysql:v1
     container_name: containerize-app-mysql
     env_file:
       - ./services/database/mysql/.env
