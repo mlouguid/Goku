@@ -2,8 +2,6 @@
 
 # containerize-php-app
 
-[![CI-CD](https://github.com/soulaimaneyahya/dockerize-php-xapp/actions/workflows/ci-cd.yaml/badge.svg)](https://github.com/soulaimaneyahya/dockerize-php-xapp/actions/workflows/ci-cd.yaml)
-
 </div>
 
 <img src="./imgs/x.png" alt="php mysql mysql redis nginx docker k8s" />
