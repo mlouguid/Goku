@@ -42,6 +42,3 @@ project folder structure
 │       ├── deployments/
 │       └── services/
 ```
-
-**resources**;
-- [Managing Linode cloud K8s infra using Terraform - GitHub repo](https://github.com/soulaimaneyahyax/terraform-linode-k8s)
