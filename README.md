@@ -6,7 +6,7 @@
 
 <img src="./imgs/x.png" alt="php mysql mysql redis nginx docker k8s" />
 
-- [x] simple project dockerize php-nginx-mysql
+- [x] simple project containerize php-nginx-mysql
 - [x] simple php-code
 - [x] redis-database
 - [x] deploy k8s
@@ -35,7 +35,6 @@ project folder structure
 │           ├── src/
 │           ├── composer.json
 │           ├── Dockerfile
-│           ├── php.ini
 │           ├── .env
 ├── infra/
 │   ├── k8s/
