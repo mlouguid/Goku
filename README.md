@@ -26,7 +26,7 @@ project folder structure
 │   └── web/
 │       ├── nginx/
 │       │   ├── Dockerfile
-│       │   ├── nginx.conf
+│       │   ├── app.conf
 │       │   ├── fastcgi_params
 │       │   └── .env
 │       └── php/
