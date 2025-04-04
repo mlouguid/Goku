@@ -5,7 +5,7 @@ services:
     build:
       context: ./services/database/mysql
       dockerfile: Dockerfile
-    image: dockerize_xapp_mysql:v1
+    image: containerize-app-mysql:v1
     container_name: containerize-app-mysql
     env_file:
       - ./services/database/mysql/.env
@@ -44,7 +44,6 @@ services:
       dockerfile: Dockerfile
     image: containerize-app-nginx:v1
     container_name: containerize-app-nginx
-    working_dir: /var/www/html
     env_file:
       - ./services/web/nginx/.env
     restart: always
@@ -75,6 +74,7 @@ volumes:
 
 networks:
   app_network:
+    name: app_network
     driver: bridge
     ipam:
       config:
