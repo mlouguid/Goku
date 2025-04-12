@@ -1,5 +1,11 @@
-docker hub images;
+## Docker hub images
+```
+docker pull marouanetesting/custom-php:v1
+docker pull marouanetesting/custom-nginx:v1
+docker pull marouanetesting/custom-mysql:v1
+docker pull marouanetesting/custom-redis:v1
 
+```
 ## docker-compose cli
 
 ```sh
