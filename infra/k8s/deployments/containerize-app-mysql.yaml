@@ -1,0 +1,32 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: containerize-app-mysql-service
+  labels:
+    app: containerize-app-mysql-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: containerize-app-mysql-service
+  template:
+    metadata:
+      labels:
+        app: containerize-app-mysql-service
+    spec:
+      containers:
+        - name: containerize-app-mysql-service
+          image: marouanetesting/custom-mysql:v1
+          ports:
+            - containerPort: 3306
+          envFrom:
+            - secretRef:
+                name: containerize-app-mysql-secret
+          volumeMounts:
+            - name: containerize-app-mysql-volume
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: containerize-app-mysql-volume
+          persistentVolumeClaim:
+            claimName: containerize-app-mysql-servic-pvc
