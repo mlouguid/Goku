@@ -2,10 +2,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: dockerize-xapp-php-service
+  name: containerize-app-php-service
 spec:
   selector:
-    app: dockerize-xapp-php-service
+    app: containerize-app-php-service
   ports:
     - protocol: TCP
       port: 9000

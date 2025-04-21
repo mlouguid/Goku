@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: containerize-app-nginx-service
+  labels:
+    app: containerize-app-nginx-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: containerize-app-nginx-service
+  template:
+    metadata:
+      labels:
+        app: containerize-app-nginx-service
+    spec:
+      containers:
+        - name: containerize-app-nginx-service
+          image: marouanetester/custom-nginx:v1
+          ports:
+            - containerPort: 80

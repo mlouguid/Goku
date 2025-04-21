@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: dockerize-xapp-mysql-servic-pv
+  name: containerize-app-mysql-servic-pv
 spec:
   capacity:
     storage: 100Mi
