@@ -49,82 +49,50 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
         timeout-minutes: 5
 
-      - name: Log in to GitHub Container Registry
-        uses: docker/login-action@v2
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.XTOKEN }}
-        timeout-minutes: 5
-
       - name: Build services/PHP Docker image
         run: |
           cd services/web/php
-          docker build -t containerize-app-php-image:v1 .
+          docker build -t custom-php:v1 .
         timeout-minutes: 5
 
       - name: Push services/PHP Docker image to Docker Hub
         run: |
-          docker tag containerize-app-php-image:v1 ${{ secrets.DOCKER_USERNAME }}/containerize-app-php-image:v1
-          docker push ${{ secrets.DOCKER_USERNAME }}/containerize-app-php-image:v1
-        timeout-minutes: 5
-
-      - name: Push services/PHP Docker image to GHCR
-        run: |
-          docker tag containerize-app-php-image:v1 ghcr.io/${{ github.repository_owner }}/containerize-app-php-image:v1
-          docker push ghcr.io/${{ github.repository_owner }}/containerize-app-php-image:v1
+          docker tag custom-php:v1 ${{ secrets.DOCKER_USERNAME }}/custom-php:v1
+          docker push ${{ secrets.DOCKER_USERNAME }}/custom-php:v1
         timeout-minutes: 5
 
       - name: Build services/Nginx Docker image
         run: |
           cd services/web/nginx
-          docker build -t containerize-app-nginx-image:v1 .
+          docker build -t custom-nginx:v1 .
         timeout-minutes: 5
 
       - name: Push services/Nginx Docker image to Docker Hub
         run: |
-          docker tag containerize-app-nginx-image:v1 ${{ secrets.DOCKER_USERNAME }}/containerize-app-nginx-image:v1
-          docker push ${{ secrets.DOCKER_USERNAME }}/containerize-app-nginx-image:v1
-        timeout-minutes: 5
-
-      - name: Push services/Nginx Docker image to GHCR
-        run: |
-          docker tag containerize-app-nginx-image:v1 ghcr.io/${{ github.repository_owner }}/containerize-app-nginx-image:v1
-          docker push ghcr.io/${{ github.repository_owner }}/containerize-app-nginx-image:v1
+          docker tag custom-nginx:v1 ${{ secrets.DOCKER_USERNAME }}/custom-nginx:v1
+          docker push ${{ secrets.DOCKER_USERNAME }}/custom-nginx:v1
         timeout-minutes: 5
 
       - name: Build services/mysql Docker image
         run: |
           cd services/database/mysql
-          docker build -t containerize-app-mysql-image:v1 .
+          docker build -t custom-mysql:v1 .
         timeout-minutes: 5
 
       - name: Push services/mysql Docker image to Docker Hub
         run: |
-          docker tag containerize-app-mysql-image:v1 ${{ secrets.DOCKER_USERNAME }}/containerize-app-mysql-image:v1
-          docker push ${{ secrets.DOCKER_USERNAME }}/containerize-app-mysql-image:v1
-        timeout-minutes: 5
-
-      - name: Push services/mysql Docker image to GHCR
-        run: |
-          docker tag containerize-app-mysql-image:v1 ghcr.io/${{ github.repository_owner }}/containerize-app-mysql-image:v1
-          docker push ghcr.io/${{ github.repository_owner }}/containerize-app-mysql-image:v1
+          docker tag custom-mysql:v1 ${{ secrets.DOCKER_USERNAME }}/custom-mysql:v1
+          docker push ${{ secrets.DOCKER_USERNAME }}/custom-mysql:v1
         timeout-minutes: 5
 
       - name: Build services/redis Docker image
         run: |
           cd services/database/redis
-          docker build -t containerize-app-redis-image:v1 .
+          docker build -t custom-redis:v1 .
         timeout-minutes: 5
 
       - name: Push services/redis Docker image to Docker Hub
         run: |
-          docker tag containerize-app-redis-image:v1 ${{ secrets.DOCKER_USERNAME }}/containerize-app-redis-image:v1
-          docker push ${{ secrets.DOCKER_USERNAME }}/containerize-app-redis-image:v1
-        timeout-minutes: 5
-
-      - name: Push services/redis Docker image to GHCR
-        run: |
-          docker tag containerize-app-redis-image:v1 ghcr.io/${{ github.repository_owner }}/containerize-app-redis-image:v1
-          docker push ghcr.io/${{ github.repository_owner }}/containerize-app-redis-image:v1
+          docker tag custom-redis:v1 ${{ secrets.DOCKER_USERNAME }}/custom-redis:v1
+          docker push ${{ secrets.DOCKER_USERNAME }}/custom-redis:v1
         timeout-minutes: 5
