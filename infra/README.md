@@ -2,29 +2,34 @@
 
 Apply deployments conf
 ```sh
-kubectl apply -f k8s/deployments/dockerize_xapp_mysql.yaml
-kubectl apply -f k8s/deployments/dockerize_xapp_redis.yaml
-kubectl apply -f k8s/deployments/dockerize_xapp_nginx.yaml
-kubectl apply -f k8s/deployments/dockerize_xapp_php.yaml
+kubectl apply -f k8s/deployments/containerize-app-mysql.yaml
+kubectl apply -f k8s/deployments/containerize-app-redis.yaml
+kubectl apply -f k8s/deployments/containerize-app-nginx.yaml
+kubectl apply -f k8s/deployments/containerize-app-php.yaml
 ```
 
 Apply services conf
 ```sh
-kubectl apply -f k8s/services/dockerize_xapp_mysql_service.yaml
-kubectl apply -f k8s/services/dockerize_xapp_redis_service.yaml
-kubectl apply -f k8s/services/dockerize_xapp_nginx_service.yaml
-kubectl apply -f k8s/services/dockerize_xapp_php_service.yaml
+kubectl apply -f k8s/services/containerize-app-mysql_service.yaml
+kubectl apply -f k8s/services/containerize-app-redis_service.yaml
+kubectl apply -f k8s/services/containerize-app-nginx_service.yaml
+kubectl apply -f k8s/services/containerize-app-php_service.yaml
 ```
 
 Apply secrets conf
 ```sh
-kubectl apply -f k8s/secrets/dockerize_xapp_mysql_secrets.yaml
+kubectl apply -f k8s/secrets/containerize-app-mysql_secrets.yaml
 ```
 
 Apply pvc conf
 ```sh
-kubectl apply -f k8s/pvc/dockerize_xapp_mysql_pv.yaml
-kubectl apply -f k8s/pvc/dockerize_xapp_mysql_pvc.yaml
+kubectl apply -f k8s/pvc/containerize-app-mysql_pv.yaml
+kubectl apply -f k8s/pvc/containerize-app-mysql_pvc.yaml
+```
+
+Apply all
+```sh
+kubectl apply -f k8s
 ```
 
 deployment status
