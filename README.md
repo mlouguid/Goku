@@ -12,6 +12,16 @@
 	•	CI/CD setup using GitHub Actions
 	•	Deployment to Kubernetes (K8s)
 
+## 🚀 To get started quickly, just follow these steps:
+💡 **Note**: Before starting the project locally, make sure you have Docker Desktop and Docker Compose installed on your system.
+
+> - [Install Docker & Docker Compose on macOS](https://docs.docker.com/desktop/install/mac-install/)
+> - [Install Docker & Docker Compose on Windows](https://docs.docker.com/desktop/install/windows-install/)
+
+Once installed, you’re ready to spin up the environment locally.
+
+
+
 ## Infra Project
 
 ```sh
@@ -43,13 +53,13 @@
 │       └── services/
 ```
 
-## docker cli
+## Start the local environment with Docker Compose
 
 ```sh
 docker-compose up -d
 ```
 
-## K8s cli
+## Deploy to k8s
 ```sh
 kubectl apply -f infra/k8s
 ```
