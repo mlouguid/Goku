@@ -53,7 +53,7 @@ Once installed, you’re ready to spin up the environment locally.
 │       └── services/
 ```
 
-## Start the local environment with Docker Compose
+## Deploy to Docker Compose
 
 ```sh
 docker-compose up -d
