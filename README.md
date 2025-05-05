@@ -61,6 +61,6 @@ docker-compose up -d
 
 ## Deploy to k8s
 ```sh
-kubectl apply -f infra/k8s
+kubectl apply -R -f infra/k8s 
 ```
 
