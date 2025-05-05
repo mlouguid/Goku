@@ -4,7 +4,7 @@
 
 </div>
 
-<img src="./images/shema.png" alt="php mysql mysql redis nginx docker k8s" />
+<img src="./images/shema.png" alt="php mysql redis nginx docker k8s" />
 
 ## Project Requirements
 	•	Containerized application using PHP, Nginx, MySQL, and Redis
