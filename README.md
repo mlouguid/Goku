@@ -4,7 +4,7 @@
 
 </div>
 
-<img src="./images/shema.png" alt="php mysql mysql redis nginx docker k8s" />
+<img src="./images/shema.png" alt="php mysql redis nginx docker k8s" />
 
 ## Project Requirements
 	•	Containerized application using PHP, Nginx, MySQL, and Redis
@@ -61,6 +61,6 @@ docker-compose up -d
 
 ## Deploy to k8s
 ```sh
-kubectl apply -f infra/k8s
+kubectl apply -R -f infra/k8s 
 ```
 
