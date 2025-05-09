@@ -1,3 +1,7 @@
+# Gogo V1
+
+Gogo is the standard development environment used to deploy your app locally or in production, with minimal resource usage to optimize your infrastructure
+
 <div align="center">
 
 # containerize-php-app
