@@ -30,8 +30,7 @@ services:
     ports:
       - "9000:9000"
     volumes:
-      - ./services/web/php:/var/www/html
-      - ./services/web/php/vendor:/var/www/html/vendor
+      - ./gms:/var/www/html # This line must be updated dynamically in the script
     depends_on:
       - containerize-app-mysql
     networks:
