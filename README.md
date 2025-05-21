@@ -30,6 +30,14 @@ Once installed, you’re ready to spin up the environment locally.
 
 ```sh
 ├── docker-compose.yaml
+└── php/   # your-project
+│    ├── public/
+│    │   └── index.php
+│    ├── src/
+│    ├── composer.json
+│    ├── Dockerfile
+│    ├── .env
+│
 ├── services/
 │   ├── database/
 │   │   ├── mysql/
@@ -40,17 +48,11 @@ Once installed, you’re ready to spin up the environment locally.
 │   │   │   ├── .env
 │   └── web/
 │       ├── nginx/
-│       │   ├── Dockerfile
-│       │   ├── app.conf
-│       │   ├── fastcgi_params
-│       │   └── .env
-│       └── php/
-│           ├── public/
-│           │   └── index.php
-│           ├── src/
-│           ├── composer.json
 │           ├── Dockerfile
-│           ├── .env
+│           ├── app.conf
+│           ├── fastcgi_params
+│           └── .env
+│       
 ├── infra/
 │   ├── k8s/
 │       ├── deployments/
