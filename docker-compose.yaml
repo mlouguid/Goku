@@ -19,19 +19,19 @@ services:
 
   containerize-app-php:
     build:
-      context: ./services/web/php
+      context: ./php
       dockerfile: Dockerfile
     image: containerize-app-php:v1
     container_name: containerize-app-php
     working_dir: /var/www/html
     env_file:
-      - ./services/web/php/.env
+      - ./php/.env
     restart: always
     ports:
       - "9000:9000"
     volumes:
-      - ./services/web/php:/var/www/html
-      - ./services/web/php/vendor:/var/www/html/vendor
+      - ./php:/var/www/html
+      - ./php/vendor:/var/www/html/vendor
     depends_on:
       - containerize-app-mysql
     networks:
