@@ -25,12 +25,12 @@ jobs:
 
       - name: Validate composer.json and composer.lock
         run: |
-          cd services/web/php
+          cd php
           composer validate --strict
 
       - name: Install dependencies
         run: |
-          cd services/web/php
+          cd php
           composer install --prefer-dist --no-interaction --no-progress
 
   cd:
@@ -51,7 +51,7 @@ jobs:
 
       - name: Build services/PHP Docker image
         run: |
-          cd services/web/php
+          cd php
           docker build -t custom-php:v1 .
         timeout-minutes: 5
 

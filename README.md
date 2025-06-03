@@ -1,3 +1,7 @@
+# Gogo V1
+
+Gogo is the standard development environment used to deploy your app locally or in production, with minimal resource usage to optimize your infrastructure
+
 <div align="center">
 
 # containerize-php-app
@@ -26,6 +30,14 @@ Once installed, you’re ready to spin up the environment locally.
 
 ```sh
 ├── docker-compose.yaml
+└── php/   # your-project
+│    ├── public/
+│    │   └── index.php
+│    ├── src/
+│    ├── composer.json
+│    ├── Dockerfile
+│    ├── .env
+│
 ├── services/
 │   ├── database/
 │   │   ├── mysql/
@@ -36,17 +48,11 @@ Once installed, you’re ready to spin up the environment locally.
 │   │   │   ├── .env
 │   └── web/
 │       ├── nginx/
-│       │   ├── Dockerfile
-│       │   ├── app.conf
-│       │   ├── fastcgi_params
-│       │   └── .env
-│       └── php/
-│           ├── public/
-│           │   └── index.php
-│           ├── src/
-│           ├── composer.json
 │           ├── Dockerfile
-│           ├── .env
+│           ├── app.conf
+│           ├── fastcgi_params
+│           └── .env
+│       
 ├── infra/
 │   ├── k8s/
 │       ├── deployments/
