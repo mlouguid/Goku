@@ -1,4 +1,4 @@
-FROM nginx:latest
+FROM nginx:1.28.0-alpine3.21-slim
 
 WORKDIR /usr/share/nginx/html
 
