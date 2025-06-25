@@ -24,7 +24,11 @@ Gogo is the standard development environment used to deploy your app locally or 
 
 Once installed, you’re ready to spin up the environment locally.
 
-
+## Clone the repository “Goku”
+```sh
+git clone https://github.com/mlouguid/Goku.git
+cd Goku
+```
 
 ## Infra Project
 
