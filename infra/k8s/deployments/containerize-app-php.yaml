@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: containerize-app-php-service
+  labels:
+    app: containerize-app-php-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: containerize-app-php-service
+  template:
+    metadata:
+      labels:
+        app: containerize-app-php-service
+    spec:
+      containers:
+        - name: containerize-app-php-service
+          image: marouanetester/custom-php:v1
+          ports:
+            - containerPort: 9000

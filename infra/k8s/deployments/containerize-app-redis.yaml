@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: containerize-app-redis-service
+  labels:
+    app: containerize-app-redis-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: containerize-app-redis-service
+  template:
+    metadata:
+      labels:
+        app: containerize-app-redis-service
+    spec:
+      containers:
+        - name: containerize-app-redis-service
+          image: marouanetesting/custom-redis:v1
+          ports:
+            - containerPort: 6379

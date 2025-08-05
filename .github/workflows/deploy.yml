@@ -1,0 +1,98 @@
+name: CI-CD
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Set up PHP
+        uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
+        with:
+          php-version: "8.3"
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Validate composer.json and composer.lock
+        run: |
+          cd php
+          composer validate --strict
+
+      - name: Install dependencies
+        run: |
+          cd php
+          composer install --prefer-dist --no-interaction --no-progress
+
+  cd:
+    runs-on: ubuntu-latest
+    needs: ci
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+    
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+        timeout-minutes: 5
+
+      - name: Build services/PHP Docker image
+        run: |
+          cd php
+          docker build -t custom-php:v1 .
+        timeout-minutes: 5
+
+      - name: Push services/PHP Docker image to Docker Hub
+        run: |
+          docker tag custom-php:v1 ${{ secrets.DOCKER_USERNAME }}/custom-php:v1
+          docker push ${{ secrets.DOCKER_USERNAME }}/custom-php:v1
+        timeout-minutes: 5
+
+      - name: Build services/Nginx Docker image
+        run: |
+          cd services/web/nginx
+          docker build -t custom-nginx:v1 .
+        timeout-minutes: 5
+
+      - name: Push services/Nginx Docker image to Docker Hub
+        run: |
+          docker tag custom-nginx:v1 ${{ secrets.DOCKER_USERNAME }}/custom-nginx:v1
+          docker push ${{ secrets.DOCKER_USERNAME }}/custom-nginx:v1
+        timeout-minutes: 5
+
+      - name: Build services/mysql Docker image
+        run: |
+          cd services/database/mysql
+          docker build -t custom-mysql:v1 .
+        timeout-minutes: 5
+
+      - name: Push services/mysql Docker image to Docker Hub
+        run: |
+          docker tag custom-mysql:v1 ${{ secrets.DOCKER_USERNAME }}/custom-mysql:v1
+          docker push ${{ secrets.DOCKER_USERNAME }}/custom-mysql:v1
+        timeout-minutes: 5
+
+      - name: Build services/redis Docker image
+        run: |
+          cd services/database/redis
+          docker build -t custom-redis:v1 .
+        timeout-minutes: 5
+
+      - name: Push services/redis Docker image to Docker Hub
+        run: |
+          docker tag custom-redis:v1 ${{ secrets.DOCKER_USERNAME }}/custom-redis:v1
+          docker push ${{ secrets.DOCKER_USERNAME }}/custom-redis:v1
+        timeout-minutes: 5
