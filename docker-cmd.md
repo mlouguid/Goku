@@ -1,46 +1,43 @@
-## Docker hub images
-```
-docker pull marouanetesting/custom-php:v1
-docker pull marouanetesting/custom-nginx:v1
-docker pull marouanetesting/custom-mysql:v1
-docker pull marouanetesting/custom-redis:v1
+# 🐳 Docker Environment Setup
+
+## 📦 Docker Hub Images
+
+You can pull the prebuilt images from Docker Hub:
+
+```sh
+docker pull marouanetesting/php:v1.1
+docker pull marouanetesting/nginx:v1.1
+docker pull marouanetesting/mysql:v1.1
+docker pull marouanetesting/redis:v1.1
 
 ```
-## docker-compose cli
+
+## 🚀 Deploy Containers Using Docker Compose
 
 ```sh
 docker-compose up -d
 ```
 
-## docker cli
+## 🧪 Docker CLI: Logs, Shell Access, and Network
 
 ```sh
-docker logs containerize_app_nginx
-docker logs containerize_app_php
+docker logs container-x
 
-docker network inspect app_network
 
-docker exec -it containerize_app_nginx bash
-docker exec -it containerize_app_php bash
+docker network inspect local _network
 
-docker exec -it containerize_app_redis bash
-docker exec -it containerize_app_mysql bash
+docker exec -it container-x bash
+
 ```
 
-## Docker push container
+## 📤 Tag and Push Containers to Docker Hub
 ```
 > docker login
 
 // update marouanetesting with your user docker-hub
 
-docker tag containerize-app-php:v1 marouanetesting/custom-php:v1
-docker tag containerize-app-nginx:v1 marouanetesting/custom-nginx:v1
-docker tag containerize-app-mysql:v1 marouanetesting/custom-mysql:v1
-docker tag containerize-app-redis:v1 marouanetesting/custom-redis:v1
+docker tag  container-x marouanetesting/container-x:vx.x
 
-docker push marouanetesting/custom-php:v1
-docker push marouanetesting/custom-nginx:v1
-docker push marouanetesting/custom-mysql:v1
-docker push marouanetesting/custom-redis:v1
+docker push container-x:vx.x
 ```
 

@@ -1,83 +1,73 @@
 version: "3.8"
 
 services:
-  containerize-app-mysql:
+  postgres:
     build:
-      context: ./services/database/mysql
+      context: ./database/postgres
       dockerfile: Dockerfile
-    image: containerize-app-mysql:v1
-    container_name: containerize-app-mysql
+    image: postgres:v1.1
+    container_name: postgres
     env_file:
-      - ./services/database/mysql/.env
+      - ./database/postgres/.env
     ports:
-      - "3306:3306"
+      - "5432:5432"
     volumes:
-      - containerize-app-mysql:/var/lib/mysql
+      - postgres-data:/var/lib/postgresql/data
     networks:
-      app_network:
-        ipv4_address: 10.10.0.2 # IP MySQL
+      - local_network
 
-  containerize-app-php:
+  php:
     build:
-      context: ./php
+      context: ./app-php
       dockerfile: Dockerfile
-    image: containerize-app-php:v1
-    container_name: containerize-app-php
+    image: php:v1.1
+    container_name: app-php
     working_dir: /var/www/html
     env_file:
-      - ./php/.env
+      - ./app-php/.env
     restart: always
     ports:
       - "9000:9000"
     volumes:
-      - ./php:/var/www/html
-      - ./php/vendor:/var/www/html/vendor
+      - ./app-php:/var/www/html
+      - ./app-php:/var/www/html/vendor
     depends_on:
-      - containerize-app-mysql
+      - postgres
     networks:
-      app_network:
-        ipv4_address: 10.10.0.3 # IP PHP
+      - local_network
 
-  containerize-app-nginx:
+  nginx:
     build:
-      context: ./services/web/nginx
+      context: ./nginx
       dockerfile: Dockerfile
-    image: containerize-app-nginx:v1
-    container_name: containerize-app-nginx
+    image: nginx:v1.1
+    container_name: nginx
     env_file:
-      - ./services/web/nginx/.env
+      - ./nginx/.env
     restart: always
     ports:
       - "80:80"
     depends_on:
-      - containerize-app-php
+      - app-php
     networks:
-      app_network:
-        ipv4_address: 10.10.0.4 # IP Nginx
+      - local_network
 
-  containerize-app-redis:
+  redis:
     build:
-      context: ./services/database/redis
+      context: ./redis
       dockerfile: Dockerfile
-    image: containerize-app-redis:v1
-    container_name: containerize-app-redis
+    image: redis:v1.1
+    container_name: redis
     env_file:
-      - ./services/database/redis/.env
+      - ./redis/.env
     ports:
       - "6379:6379"
     networks:
-      app_network:
-        ipv4_address: 10.10.0.5 # IP Redis
+      - local_network
 
 volumes:
-  containerize-app-mysql:
+  postgres-data:
 
 networks:
-  app_network:
-    name: app_network
+  local_network:
     driver: bridge
-    ipam:
-      config:
-        - subnet: "10.10.0.0/24" # Subnet for the network
-          gateway: "10.10.0.1" # Gateway for the subnet
-    external: false
