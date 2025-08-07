@@ -23,8 +23,7 @@ docker-compose up -d
 ```sh
 docker logs container-x
 
-
-docker network inspect local _network
+docker network inspect local_network
 
 docker exec -it container-x bash
 
