@@ -1,40 +1,40 @@
 FROM php:8.3-fpm
 
+# Set working directory
 WORKDIR /var/www/html
 
-# Install required system dependencies for PHP extensions and utilities
-RUN apt-get update && apt-get install -y \
+# Install system dependencies and PHP extensions in one layer
+RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     unzip \
     zip \
     libpng-dev \
     libjpeg62-turbo-dev \
     libfreetype6-dev \
-    default-mysql-client \
+    libpq-dev \
+    postgresql-client \
     iputils-ping \
-    libmariadb-dev \
-    libmariadb-dev-compat \
-    && rm -rf /var/lib/apt/lists/*
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) pdo pdo_pgsql gd \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install PHP extensions: pdo, pdo_mysql (for MySQL support)
-RUN docker-php-ext-install pdo pdo_mysql
+# Install Composer globally
+RUN curl -sS https://getcomposer.org/installer | php -- \
+    --install-dir=/usr/local/bin --filename=composer
 
-# Install composer
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
-RUN chmod +x /usr/bin/composer
-ENV COMPOSER_ALLOW_SUPERUSER 1
+# Enable Composer Bash completion
+RUN composer completion bash > /etc/bash_completion.d/composer && \
+    echo "source /etc/bash_completion.d/composer" >> /etc/bash.bashrc
 
-# Generate composer completion and move it to correct location
-RUN composer completion bash > /root/composer-completion.bash && \
-    cp /root/composer-completion.bash /etc/bash_completion.d/composer
-
-# Ensure completion is sourced
-RUN echo "source /etc/bash_completion.d/composer" >> /etc/bash.bashrc
-
-# Install PHP dependencies
+# Copy composer files first to leverage Docker cache
 COPY composer.json composer.lock ./
-RUN composer install --no-dev --optimize-autoloader
 
+# Install PHP dependencies (excluding dev)
+RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+
+# Copy the rest of your app
 COPY . .
 
+# Expose port (default FPM port)
+ARG SERVER_PORT=9000
 EXPOSE ${SERVER_PORT}
