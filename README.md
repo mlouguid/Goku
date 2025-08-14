@@ -44,7 +44,7 @@ cd Goku
 │
 ├── services/
 │   ├── database/
-│   │   ├── mysql/
+│   │   ├── pgsql/
 │   │   │   ├── Dockerfile
 │   │   │   ├── .env
 │   │   ├── redis/
