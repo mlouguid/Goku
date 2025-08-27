@@ -30,11 +30,11 @@ git clone https://github.com/mlouguid/Goku.git
 cd Goku
 ```
 
-## Infra Project
+## Infra Project Docker
 
 ```sh
 ├── docker-compose.yaml
-└── php/   # your-project
+└── app-php/   # your-project
 │    ├── public/
 │    │   └── index.php
 │    ├── src/
@@ -42,25 +42,22 @@ cd Goku
 │    ├── Dockerfile
 │    ├── .env
 │
-├── services/
-│   ├── database/
-│   │   ├── pgsql/
-│   │   │   ├── Dockerfile
-│   │   │   ├── .env
-│   │   ├── redis/
-│   │   │   ├── Dockerfile
-│   │   │   ├── .env
-│   └── web/
-│       ├── nginx/
-│           ├── Dockerfile
-│           ├── app.conf
-│           ├── fastcgi_params
-│           └── .env
-│       
-├── infra/
-│   ├── k8s/
-│       ├── deployments/
-│       └── services/
+├── database
+│   └── postgres
+│       ├── Dockerfile
+│       ├── .env
+│       └── init.sql
+│ 
+├── nginx
+│   ├── beta.conf
+│   ├── Dockerfile
+│   ├── .env
+│   └── fastcgi_params
+│ 
+└── redis
+    ├── Dockerfile
+    ├── .env
+    └── redis.conf      
 ```
 
 ## Deploy to Docker Compose
