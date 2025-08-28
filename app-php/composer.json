@@ -1,0 +1,15 @@
+{
+    "name": "apple/app-php",
+    "autoload": {
+        "psr-4": {
+            "Apple\\AppPhp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "mlouguid",
+            "email": "marouane178@gmail.com"
+        }
+    ],
+    "require": {}
+}
