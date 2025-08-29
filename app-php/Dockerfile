@@ -1,40 +1,50 @@
-FROM php:8.3-fpm
+# ---------- Base image with system deps & PHP extensions ----------
+FROM php:8.2-fpm 
 
-# Set working directory
 WORKDIR /var/www/html
 
-# Install system dependencies and PHP extensions in one layer
+# Install system packages needed for common PHP extensions and tools
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    git \
-    unzip \
-    zip \
-    libpng-dev \
-    libjpeg62-turbo-dev \
-    libfreetype6-dev \
+    git curl unzip zip \
+    libpng-dev libjpeg62-turbo-dev libfreetype6-dev \
     libpq-dev \
-    postgresql-client \
-    iputils-ping \
+    libicu-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) pdo pdo_pgsql gd \
+    && docker-php-ext-install -j"$(nproc)" \
+        gd \
+        pdo \
+        pdo_pgsql \
+        intl \
+        bcmath \
+        pcntl \
+        opcache \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install Composer globally
-RUN curl -sS https://getcomposer.org/installer | php -- \
-    --install-dir=/usr/local/bin --filename=composer
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer \
+    | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Enable Composer Bash completion
-RUN composer completion bash > /etc/bash_completion.d/composer && \
-    echo "source /etc/bash_completion.d/composer" >> /etc/bash.bashrc
+# Optional: tune PHP for production (you can override via mounted ini)
+RUN { \
+    echo "opcache.enable=1"; \
+    echo "opcache.enable_cli=0"; \
+    echo "opcache.jit_buffer_size=0"; \
+    echo "opcache.validate_timestamps=0"; \
+    echo "upload_max_filesize=20M"; \
+    echo "post_max_size=21M"; \
+} > /usr/local/etc/php/conf.d/zz-prod.ini
 
-# Copy composer files first to leverage Docker cache
-COPY composer.json composer.lock ./
+# copy only composer files first for better caching
+COPY composer.json  ./
 
-# Install PHP dependencies (excluding dev)
-RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+# Set environment for faster Composer installs in CI/containers
+ENV COMPOSER_ALLOW_SUPERUSER=1 \
+    COMPOSER_NO_INTERACTION=1
 
-# Copy the rest of your app
-COPY . .
+RUN composer install --no-dev --prefer-dist --no-scripts --no-progress
 
-# Expose port (default FPM port)
-ARG SERVER_PORT=9000
-EXPOSE ${SERVER_PORT}
+COPY --chown=www-data:www-data . .
+
+EXPOSE 9000
+
+CMD ["php-fpm"]
