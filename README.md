@@ -32,7 +32,7 @@ cd Goku
 
 ## Infra Project Docker
 
-```sh
+```bash
 ├── docker-compose.yaml
 └── app-php/   # your-project
 │    ├── public/
