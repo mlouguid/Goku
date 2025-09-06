@@ -23,11 +23,10 @@ jobs:
         with:
           php-version: "8.3"
 
-      - name: Validate composer.json and composer.lock
-        run: |
+      - name: Validate composer.json
           cd app-php
-          composer validate
-          
+          composer validate --strict
+
       - name: Install dependencies
         run: |
           cd app-php
