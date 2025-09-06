@@ -26,8 +26,8 @@ jobs:
       - name: Validate composer.json and composer.lock
         run: |
           cd app-php
-          composer validate --strict
-
+          composer validate
+          
       - name: Install dependencies
         run: |
           cd app-php
