@@ -1,3 +1,4 @@
+-- Create user only if not exists
 DO
 $$
 BEGIN
@@ -9,5 +10,5 @@ BEGIN
 END
 $$;
 
--- Grant privileges on the DB
+-- Grant privileges
 GRANT ALL PRIVILEGES ON DATABASE db_beta TO db_beta;

@@ -8,9 +8,9 @@ services:
     image: postgres:v1.1
     container_name: postgres
     env_file:
-      - ./database/postgres/.env
+      - ./database/postgres/.env  
     ports:
-      - "5432:5432"
+      - 5432:5432
     volumes:
       - postgres-data:/var/lib/postgresql/data
     networks:
