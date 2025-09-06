@@ -1,5 +1,10 @@
 {
     "name": "apple/app-php",
+    "description": "A simple PHP application.",
+    "license": "proprietary",
+    "require": {
+        "php": "^8.3"
+    },
     "autoload": {
         "psr-4": {
             "Apple\\AppPhp\\": "src/"
@@ -10,6 +15,5 @@
             "name": "mlouguid",
             "email": "marouane178@gmail.com"
         }
-    ],
-    "require": {}
+    ]
 }
