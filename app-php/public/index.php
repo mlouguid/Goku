@@ -1,15 +1,9 @@
 <?php
 
-/**
- * Author: Soulaimane Yahya
- * Date: 2025-03-22
- */
-
 use App\Init;
 
-/*
-* Time Zone Setting
-*/
+// Time Zone Setting
+
 date_default_timezone_set('Europe/London');
 
 ini_set('display_errors', 1);
