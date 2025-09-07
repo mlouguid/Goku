@@ -12,16 +12,15 @@ return [
     'app_root' => dirname(dirname(__FILE__)) . '/app/',
     'app_url' => $_ENV['APP_URL'],
     'database' => [
-        'host' => $_ENV['DB_HOST'],
-        'database_connect' => $_ENV['DB_CONNECT'],
-        'port' => $_ENV['MYSQL_PORT'],
-        'database_name' => $_ENV['MYSQL_DATABASE'],
-        'username' => $_ENV['MYSQL_USER'],
-        'password' => $_ENV['MYSQL_PASSWORD'],
-        'database_root_password' => $_ENV['MYSQL_ROOT_PASSWORD'],
+        'driver'   => 'pgsql',  // PostgreSQL driver
+        'host'     => $_ENV['PGSQL_HOST'],
+        'port'     => $_ENV['PGSQL_PORT'] ?? 5432,
+        'dbname'   => $_ENV['PGSQL_DATABASE'],
+        'username' => $_ENV['PGSQL_USER'],
+        'password' => $_ENV['PGSQL_PASSWORD'],
     ],
     'redis' => [
         'host' => $_ENV['REDIS_HOST'],
-        'port' => $_ENV['REDIS_PORT'],
+        'port' => $_ENV['REDIS_PORT'] ?? 6379,
     ],
 ];

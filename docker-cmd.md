@@ -7,7 +7,7 @@ You can pull the prebuilt images from Docker Hub:
 ```sh
 docker pull marouanetesting/php:v1.1
 docker pull marouanetesting/nginx:v1.1
-docker pull marouanetesting/mysql:v1.1
+docker pull marouanetesting/postgresql:v1.1
 docker pull marouanetesting/redis:v1.1
 
 ```
