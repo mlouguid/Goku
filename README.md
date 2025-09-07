@@ -1,14 +1,14 @@
-# Goku-V1
+# Goku-V1.1
 
-Gogo is the standard development environment used to deploy your app locally or in production, with minimal resource usage to optimize your infrastructure
+Gogo is the standard development environment used to deploy your app locally or in production, with minimal resource usage to optimize your infrastructure with docker or k8s
 
 <div align="center">
 
-# containerize-php-app
+# Goku app-php | Docker
 
 </div>
 
-<img src="./images/shema.png" alt="php mysql redis nginx docker k8s" />
+<img src="./images/goku.png" alt="php mysql redis nginx docker k8s" />
 
 ## Project Requirements
 	•	Containerized application using PHP, Nginx, MySQL, and Redis
