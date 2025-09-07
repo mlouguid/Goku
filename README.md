@@ -8,7 +8,7 @@ Gogo is the standard development environment used to deploy your app locally or 
 
 </div>
 
-<img src="./images/shema.png" alt="php mysql redis nginx docker k8s" />
+<img src="./images/shemagoku.png" alt="php mysql redis nginx docker k8s" />
 
 ## Project Requirements
 	•	Containerized application using PHP, Nginx, MySQL, and Redis
