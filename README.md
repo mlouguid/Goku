@@ -4,7 +4,7 @@ Gogo is the standard development environment used to deploy your app locally or 
 
 <div align="center">
 
-# Goku php-app | Docker
+# Goku app-php | Docker
 
 </div>
 
