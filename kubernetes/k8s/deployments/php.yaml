@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php-service
+  labels:
+    app: php-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: php-service
+  template:
+    metadata:
+      labels:
+        app: php-service
+    spec:
+      containers:
+        - name: php-service
+          image: marouanetesting/php:v1.1
+          ports:
+            - containerPort: 9000

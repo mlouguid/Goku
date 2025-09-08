@@ -24,7 +24,7 @@ kubectl apply -f k8s/secrets/postgres_secrets.yaml
 Apply pvc config
 ```sh
 kubectl apply -f k8s/pvc/postgres_pv.yaml
-kubectl apply -f k8s/pvc/mysql_pvc.yaml
+kubectl apply -f k8s/pvc/postgres_pvc.yaml
 ```
 
 Apply all

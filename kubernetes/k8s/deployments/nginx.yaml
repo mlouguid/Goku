@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-service
+  labels:
+    app: nginx-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-service
+  template:
+    metadata:
+      labels:
+        app: nginx-service
+    spec:
+      containers:
+        - name: nginx-service
+          image: marouanetesting/nginx:v1.1
+          ports:
+            - containerPort: 80
