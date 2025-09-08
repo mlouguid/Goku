@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: postgres-service
-          image: marouanetesting/postgresql:v1.1
+          image: marouanetesting/postgres:v1.1
           ports:
             - containerPort: 5432
           envFrom:
