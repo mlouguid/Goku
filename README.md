@@ -8,7 +8,7 @@ Gogo is the standard development environment used to deploy your app locally or 
 
 </div>
 
-<img src="./images/goku.png" alt="php PostgreSQL redis nginx docker k8s" />
+<img src="./images/goku.png" alt="php PostgreSQL redis nginx docker " />
 
 ## Project Requirements
 	•	Containerized application using PHP, Nginx, PostgreSQL and Redis
@@ -65,9 +65,39 @@ cd Goku
 ```sh
 docker-compose up -d
 ```
+---
 
-## Deploy to k8s
+# Goku v1.1 k8s
+
+## Goku app-php | k8s
+
+<img src="./images/gokuk8s.png" alt="php PostgreSQL redis nginx k8s" />
+
+## Infra Project k8s
 ```sh
-kubectl apply -R -f infra/k8s 
+kubernetes
+k8s
+│   ├── deployments
+│   │   ├── postgres.yaml  
+│   │   ├── nginx.yaml
+│   │   ├── php.yaml
+│   │   └── redis.yaml
+│   ├── pvc
+│   │   ├── postgres_pv.yaml   
+│   │   └── postgres_pvc.yaml 
+│   ├── secrets
+│   │   └── postgres_secrets.yaml  
+│   └── services
+│       ├── postgres_service.yaml 
+│       ├── nginx_service.yaml
+│       ├── php_service.yaml
+│       └── redis_service.yaml
 ```
 
+## Deploy to k8s
+
+```sh
+kubectl apply -R -f kubernetes/k8s 
+```
+
+more detail -> **kubernetes/readme.md**

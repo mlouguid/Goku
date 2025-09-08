@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: containerize-app-mysql-servic-pvc
+  name: postgres-servic-pvc
 spec:
   accessModes:
     - ReadWriteOnce
