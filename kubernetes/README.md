@@ -1,30 +1,30 @@
 ## K8S
 
-Apply deployments conf
+Apply deployments config
 ```sh
-kubectl apply -f k8s/deployments/containerize-app-mysql.yaml
-kubectl apply -f k8s/deployments/containerize-app-redis.yaml
-kubectl apply -f k8s/deployments/containerize-app-nginx.yaml
-kubectl apply -f k8s/deployments/containerize-app-php.yaml
+kubectl apply -f k8s/deployments/postgres.yaml
+kubectl apply -f k8s/deployments/redis.yaml
+kubectl apply -f k8s/deployments/nginx.yaml
+kubectl apply -f k8s/deployments/php.yaml
 ```
 
-Apply services conf
+Apply services config
 ```sh
-kubectl apply -f k8s/services/containerize-app-mysql_service.yaml
-kubectl apply -f k8s/services/containerize-app-redis_service.yaml
-kubectl apply -f k8s/services/containerize-app-nginx_service.yaml
-kubectl apply -f k8s/services/containerize-app-php_service.yaml
+kubectl apply -f k8s/services/postgres_service.yaml
+kubectl apply -f k8s/services/redis_service.yaml
+kubectl apply -f k8s/services/nginx_service.yaml
+kubectl apply -f k8s/services/php_service.yaml
 ```
 
-Apply secrets conf
+Apply secrets config
 ```sh
-kubectl apply -f k8s/secrets/containerize-app-mysql_secrets.yaml
+kubectl apply -f k8s/secrets/postgres_secrets.yaml
 ```
 
-Apply pvc conf
+Apply pvc config
 ```sh
-kubectl apply -f k8s/pvc/containerize-app-mysql_pv.yaml
-kubectl apply -f k8s/pvc/containerize-app-mysql_pvc.yaml
+kubectl apply -f k8s/pvc/postgres_pv.yaml
+kubectl apply -f k8s/pvc/mysql_pvc.yaml
 ```
 
 Apply all
@@ -33,7 +33,11 @@ kubectl apply -f k8s
 ```
 
 deployment status
+
 ```sh
+// get namespace
+kubectk get goku 
+
 // kubectl get all
 kubectl get pods
 kubectl get services

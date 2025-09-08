@@ -67,16 +67,15 @@ docker-compose up -d
 ```
 ---
 
-# k8s
+# Goku v1.1 k8s
 
-## Goku app-php | K8S
+## Goku app-php | k8s
 
 <img src="./images/gokuk8s.png" alt="php PostgreSQL redis nginx k8s" />
 
 ## Infra Project k8s
 ```sh
-cd kubernetes
-
+kubernetes
 k8s
 │   ├── deployments
 │   │   ├── postgres.yaml  
@@ -98,6 +97,7 @@ k8s
 ## Deploy to k8s
 
 ```sh
-kubectl apply -R -f infra/k8s 
+kubectl apply -R -f kubernetes/k8s 
 ```
 
+more detail -> **kubernetes/readme.md**
