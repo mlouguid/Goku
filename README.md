@@ -100,4 +100,4 @@ k8s
 kubectl apply -R -f kubernetes/k8s 
 ```
 
-more detail -> **kubernetes/readme.md**
+more detail -> **kubernetes/README.md**
