@@ -6,9 +6,8 @@ Gogo is the standard development environment used to deploy your app locally or 
 
 # Goku app-php | Docker
 
-</div>
-
 <img src="./images/goku.png" alt="php PostgreSQL redis nginx docker " />
+</div>
 
 ## Project Requirements
 	•	Containerized application using PHP, Nginx, PostgreSQL and Redis
