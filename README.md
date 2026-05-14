@@ -1,6 +1,6 @@
 # Goku-V1.1
 
-Gogo is the standard development environment used to deploy your app locally or in production, with minimal resource usage to optimize your infrastructure with docker or k8s
+Gogo is the standard development environment used to deploy your app locally or in production, with minimal resource usage to optimize your infrastructure with docker or k8s.
 
 <div align="center">
 
